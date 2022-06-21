@@ -6,11 +6,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="it">
-  <meta name="keywords" content="AI, Emotion Detector, AI Project, Deep Learning">
+  <meta name="keywords" content="AI, Pedestrian Signs, AI Project, Deep Learning, Detects, Blind">
   
   <meta name="author" content="">
 
-  <title>Emotion Detector</title>
+  <title>AI Detects Pedestrian Signs</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="/static/plugins/fontawesome/css/all.css">
 
@@ -38,7 +38,7 @@
                 <img src="{{ url_for('static', filename='images1/ai camp logo1.svg')}}" width="55" height="55" alt="">
               </a>
             <a class="navbar-brand" href="#">
-                <h3>Emotion Detector</h3>
+                <h3>AI Detects Pedestrian Signs</h3>
             </a>
             <!-- Toggler -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -103,13 +103,13 @@
                    <div class="banner-content2 text-center style-2">
                         <!-- Heading -->
                         <h1 class="display-4 mb-4 ">
-                            AI Emotion Recognition
+                            AI Detects Pedestrian Signs
                         </h1>
 
                         <!-- Subheading -->
                         <p class="lead mb-5 pr-0">
-                            Created with love from AI Camp @ Stanford StartX.<br>
-An AI project made by high school students.
+                            Safety for Blind Pedestrians.<br>
+An AI project Made by High School Students.
                         </p>
 
                         <!-- Button -->
@@ -118,7 +118,7 @@ An AI project made by high school students.
                                     <input id="seefood_input_field" name="file" type="file" onchange="this.form.submit();" hidden/>
                                 </form>
                                 <button href="#" target="_blank" class="btn btn-white btn-circled btn-text">
-                                    <i class="fas fa-camera pr-2 left" aria-hidden="true"></i> Click to see emotion
+                                    <i class="fas fa-camera pr-2 left" aria-hidden="true"></i> Click to detect the Pedestrian Sign
                                 </button>
                             </a>
                         </div>
@@ -131,17 +131,20 @@ An AI project made by high school students.
     <section>
           <div class = "row no-gutters">
               <div class = "col">
-                  <img src="{{ url_for('static', filename='images1/happy-450x450-450x450.png')}}" class="img-fluid"/>
+                  <img src="{{ url_for('static', filename='images/Do Not Enter.png')}}" style = "height:340px;width:auto" class="img-fluid"/>
               </div>
               <div class = "col">
-                <img src="{{ url_for('static', filename='images1/neutral.png')}}" class="img-fluid"/>
-            </div>
-            <div class = "col">
-                <img src="{{ url_for('static', filename='images1/sad.png')}}" class="img-fluid"/>
-            </div>
-            <div class = "col">
-                <img src="{{ url_for('static', filename='images1/suprised.png')}}" class="img-fluid"/>
-            </div>
+                  <img src="{{ url_for('static', filename='images/No Pedestrians.png')}}" style = "height:340px;width:auto" class="img-fluid"/>
+              </div>
+              <div class = "col">
+                  <img src="{{ url_for('static', filename='images/Pedestrian Stop Signal.png')}}" style = "height:340px;width:auto" class="img-fluid"/>
+              </div>
+              <div class = "col">
+                  <img src="{{ url_for('static', filename='images/Pedestrian Cross Signal.png')}}" style = "height:340px;width:auto" class="img-fluid"/> 
+              </div>
+              <div class = "col">
+                  <img src="{{ url_for('static', filename='images/Stop Sign.png')}}" style = "height:340px;width:auto" class="img-fluid"/> 
+              </div>
           </div>
     </section>
     <a id="demo"></a>
@@ -176,43 +179,52 @@ An AI project made by high school students.
             <div class="row justify-content-center text-center">
                 <div class="col-lg-4 col-sm-6 col-md-6 mb-30">
                     <div class="web-service-block">
-                        <img class="image-container img-fluid" src="{{ url_for('static', filename='images1/beatrice.jpeg')}}">
-                        <h3>Beatrice Mihalache</h3>
-                        <p>Student at Los Gatos High School</p>
-                        <p>Beatrice enjoys the quick-paced learning style of AI Camp. She contributed to our data extraction and website frontend.</p>
+                        <img class="image-container img-fluid" src="{{ url_for('static', filename='images/picture_ahana.jpeg')}}">
+                        <h3>Ahana Mangla</h3>
+                        <p>Incoming sophomore at Lynbrook High School</p>
+                        <p>She helped to manage the project and keep everyone on track as they labeled and collected data, trained the model, and created the site you are currently browsing! She also enjoys doodling and reading.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6 col-md-6 mb-30">
                     <div class="web-service-block">
                         <img class="image-container img-fluid" src="{{ url_for('static', filename='images1/ary.jpeg')}}">
-                        <h3>Aryansh Chikkere</h3>
-                        <p>Student at American High School</p>
-                        <p>Ari enjoys studying Physics and improving code. He built the initial backend of this website.</p>
+                        <h3>Sumedha Joshi</h3>
+                        <p>Incoming Freshman at Dublin High school<p>
+                      <p>Enjoys designing, building, and experimenting and helped to manage the collection and labelling data and also worked on some web development. Some other interests include charcoal sketching and singing.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6 col-md-6 mb-30">
                     <div class="web-service-block">
                         <img class="image-container img-fluid" src="{{ url_for('static', filename='images1/thomas.jpeg')}}">
-                        <h3>Thomas Chen</h3>
-                        <p>Student at Irvington High School</p>
-                        <p>Thomas enjoys experimenting with code. He created a script to retrieve data from Bing and wrote the website HTML.</p>
+                        <h3>Aastha Jain</h3>
+                        <p>Rising Junior at Newark Memorial High School</p>
+                        <p>Aastha loves building and designing AI Systems. She was the machine learning engineer and looked to see if systems were running the way they were supposed to.</p>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-sm-6 col-md-6 ">
                     <div class="web-service-block">
                         <img class="image-container img-fluid" src="{{ url_for('static', filename='images1/clement.jpeg')}}">
-                        <h3>Clement Ou</h3>
-                        <p>Student at Gunn High School</p>
-                        <p>Clement enjoys writing scripts and coding. He trained a neural network by using a deep learning instance in AWS.</p>
+                        <h3>Christian Giron-Michel</h3>
+                        <p>Junior at Notre Dame High School</p>
+                        <p>He enjoys object-oriented programming. Contributed to dataset collection, augmentation, model training, and web development.</p>
                     </div>
                 </div>
+                <div class="col-lg-4 col-sm-6 col-md-6 mb-30">
+                    <div class="web-service-block">
+                        <img class="image-container img-fluid" src="{{ url_for('static', filename='images1/thomas.jpeg')}}">
+                        <h3>Karun Pai</h3>
+                        <p>Incoming Junior from Evergreen Valley High School</p>
+                        <p>Karun is interested in Web Development and App Development. He built the website and  guided the team to build the frontend of our website.</p>
+                    </div>
+                </div>
+
                 <div class="col-lg-4 col-sm-6 col-md-6 ">
                     <div class="web-service-block">
-                        <img class="image-container img-fluid" src="{{ url_for('static', filename='images1/muti.jpeg')}}">
-                        <h3>Muti Shuman</h3>
-                        <p>Student at Junipero Serra High School</p>
-                        <p>Muti enjoys playing basketball. He built scripts to capture data using OpenCV and prepared data for training.</p>
+                        <img class="image-container img-fluid" src="{{ url_for('static', filename='images1/clement.jpeg')}}">
+                      <h3>Kathy Nie</h3>
+                        <p>Incoming sophmore at Timberline High School<p>
+                      <p> Kathy enjoys swimming and learning. She was the additional feature engineer who researched and helped with the text to speech function.  </p>
                     </div>
                 </div>
             </div>
@@ -221,30 +233,29 @@ An AI project made by high school students.
                         <div class="section-heading">
                             <!-- Heading -->
                             <h2 class="section-title section-text">
-                                Our Intructors
+                               Our Intructor
                             </h2>
                         </div>
                     </div>
                 </div> <!-- / .row -->
-    
+    <html>
+<head>
+<style>
+h1 {text-align: center;}
+p {text-align: center;}
+div {text-align: center;}
+</style>
+</head>
+<body>
                 <div class="row justify-content-center">
                     <div class="col-lg-4 col-sm-6 col-md-6">
                         <div class="web-service-block">
                             <img class="image-container img-fluid" src="{{ url_for('static', filename='images1/michael.jpeg')}}">
-                            <h3>Michael Ke Zhang</h3>
-                            <p>Stanford Ph.D</p>
-                            <p>Michael ran data teams at Blend Labs and Grab. He enjoys fishing and inspiring the next generation of students.</p>
+                            <h3>Chase Adams</h3>
+                            <p>In his final year as an undergraduate at UC Berkeley studying electrical engineering and computer science.</p>
+                            <p>He made sure the group was staying on schedule and applying all the stuff they learned at camp into their product. He became interested specifically in machine learning through past internships and courses, but also enjoys skateboarding and basketball.</p>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-sm-6 col-md-6">
-                        <div class="web-service-block">
-                            <img class="image-container img-fluid" src="{{ url_for('static', filename='images1/ying.jpeg')}}">
-                            <h3>Ying Jiang</h3>
-                            <p>Stanford Ph.D</p>
-                            <p>Ying is a Lead Data Scientist at Ericsson. She is passionate in education, data analysis, and continuous learning.</p>
-                        </div>
-                    </div>
-                </div>
     </section>
 
 <a id="our_work"></a>

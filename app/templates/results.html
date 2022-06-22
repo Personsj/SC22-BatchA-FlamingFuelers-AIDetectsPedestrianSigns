@@ -8,7 +8,7 @@
     <link rel="shortcut icon" href="{{ url_for('static', filename='images/ai-camp-logo-128x128.png')}}" type="image/x-icon">
     <meta name="description" content="">
 
-    <title>results</title>
+    <title>AI Detects Pedestrian Signs: Results</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url_for('static', filename='plugins/fontawesome/css/all.css')}}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
@@ -21,7 +21,7 @@
                 <img src="{{ url_for('static', filename='images1/ai camp logo1.svg')}}" width="55" height="55" alt="">
               </a>
             <a class="navbar-brand " href="/#">
-                <h3 class="colored-text">Emotion Detector</h3>
+                <h3 class="colored-text">AI Detects Pedestrian Signs</h3>
             </a>
             <!-- Toggler -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,39 +32,29 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <!-- Links -->
                 <ul class="navbar-nav row">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle colored-text" href="#home" id="navbarWelcome" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Links
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarWelcome">
-                                 <a class="dropdown-item " target="_blank" href="https://github.com/zikegcwk/aicamp_emotion">
-                                    Github Repo
-                                </a>
-                                <a class="dropdown-item " target="_blank" href="https://medium.com/@beatrice.miha/i-learned-how-to-learn-dive-into-the-deepest-ocean-3add9449eb7e">
-                                    Beatrice's Post
-                                </a> 
-                                <a class="dropdown-item " target="_blank" href="https://medium.com/@thomaschen395/how-ai-camp-prepared-me-for-the-real-world-7f2a8c28cde5">
-                                    Thomas's Post
-                                </a>
-                        </li>
                         <li class="nav-item ">
-                            <a href="/#home" class="nav-link colored-text">
+                            <a href="{{ url_for('home')}}#home" class="nav-link">
                                 Home
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a href="/#demo" class="nav-link colored-text">
-                                Demo
+                            <a href="{{ url_for('home')}}#demo" class="nav-link">
+                                About
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a href="/#meet_the_team" class="nav-link colored-text">
+                            <a href="{{ url_for('home')}}#meet_the_team" class="nav-link">
                                 The Team
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a href="/#our_work" class="nav-link colored-text">
+                            <a href="{{ url_for('home')}}#our_work" class="nav-link">
                                 Our Work
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a href="https://github.com/cjisgreat20/SC22-BatchA-FlamingFuelers-AIDetectsPedestrianSigns" class="nav-link">
+                                Github Repo
                             </a>
                         </li>
                     </ul>
@@ -110,12 +100,12 @@
                     <h3 class="section-title display-4 results-title">Why do we miss sometimes?</h3>
 
                     <div class="lead">
-                        <p class="section-text results-text">Given just three weeks, we only had time to train our model with 5 emotions on about 6.7k labeled data. If we have more time, we can improve our model performance!&nbsp;</p>
+                        <p class="section-text results-text">Given just three weeks, we trained our model with 8 signs on about 2.7k images, labeled thoroughly to make sure we got the most out of each training! Still, no AI is perfect: the type of sign, the perspective, and the relative size of the sign can affect whether not it is correctly identified. &nbsp;</p>
                     </div>
 
                 </div>
                 <div class="col-sm-12 col-lg-6">
-                    <img class="mbr-figure-graph" src="{{ url_for('static', filename='images/clem-5-emo-ncm-671x690.jpg')}}">
+                    <img class="mbr-figure-graph" src="{{ url_for('static', filename='images/confusion_matrix.png')}}">
                 </div>
             </div>
     </section>

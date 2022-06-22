@@ -5,10 +5,12 @@ from flask import render_template
 from url_utils import get_base_url
 import os
 import torch
+from gtts import gTTS
+from IPython.display import Audio
 
 # setup the webserver
 # port may need to be changed if there are multiple flask servers running on same server
-port = 11112
+port = 11113
 base_url = get_base_url(port)
 
 # if the base url is not empty, then the server is running in development, and we need to specify the static folder so that the static files are served
@@ -18,7 +20,7 @@ else:
     app = Flask(__name__, static_url_path=base_url+'static')
 
 UPLOAD_FOLDER = 'static/uploads'
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'wav'])
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 32 * 1024 * 1024
@@ -53,7 +55,7 @@ def home():
     return render_template('home.html')
 
 
-@app.route(f'{base_url}/uploads/<filename>')
+@app.route(f'{base_url}/uploads/<filename>', methods = ['GET', 'POST'])
 def uploaded_file(filename):
     here = os.getcwd()
     image_path = os.path.join(here, app.config['UPLOAD_FOLDER'], filename)
@@ -76,23 +78,40 @@ def uploaded_file(filename):
             else:
                 return
         confidences = list(results.pandas().xyxy[0]['confidence'])
+        labels_initial = list(results.pandas().xyxy[0]['name'])
         # confidences: rounding and changing to percent, putting in function
         format_confidences = []
-        for percent in confidences:
-            format_confidences.append(str(round(percent*100)) + '%')
-        format_confidences = and_syntax(format_confidences)
+        labels = []
 
-        labels = list(results.pandas().xyxy[0]['name'])
+        for i in range(len(confidences)):
+            if confidences[i] > 0.5:
+                format_confidences.append(str(round(confidences[i]*100)) + '%')
+                #finish next line
+                labels.append(labels_initial[i])
+
+        format_confidences = and_syntax(format_confidences)
         # labels: sorting and capitalizing, putting into function
         labels = set(labels)
         labels = [emotion.capitalize() for emotion in labels]
         labels = and_syntax(labels)
+        tts = gTTS(labels + 'ahead')
+        tts.save('1.wav')
+        sound_file = '1.wav'
+        Audio(sound_file, autoplay=True)
+
         return render_template('results.html', confidences=format_confidences, labels=labels,
                                old_filename=filename,
                                filename=filename)
+
     else:
         found = False
+        tts = gTTS('No Pedestrian Signs ahead')
+        tts.save('1.wav')
+        sound_file = '1.wav'
+        Audio(sound_file, autoplay=True)
+
         return render_template('results.html', labels='No Emotion', old_filename=filename, filename=filename)
+
 
 
 @app.route(f'{base_url}/uploads/<path:filename>')
@@ -108,6 +127,5 @@ def files(filename):
 if __name__ == '__main__':
     # IMPORTANT: change url to the site where you are editing this file.
     website_url = 'cocalc12.ai-camp.dev'
-    
     print(f'Try to open\n\n    https://{website_url}' + base_url + '\n\n')
     app.run(host = '0.0.0.0', port=port, debug=True)

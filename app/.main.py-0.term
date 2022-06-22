@@ -1,0 +1,15 @@
+(base) ]0;~/SC22-BatchA-FlamingFuelers-AIDetectsPedestrianSigns/app[01;34m~/SC22-BatchA-FlamingFuelers-AIDetectsPedestrianSigns/app[00m$ ! pip install gTTS
+Collecting gTTS
+  Downloading gTTS-2.2.4-py3-none-any.whl (26 kB)
+Requirement already satisfied: requests in /projects/ce3fe429-16e9-4628-b009-0bb7ec5ec0d7/miniconda3/lib/python3.9/site-packages (from gTTS) (2.27.1)
+Collecting click
+  Downloading click-8.1.3-py3-none-any.whl (96 kB)
+[?25l[K     |███▍                            | 10 kB 12.9 MB/s eta 0:00:01[K     |██████▉                         | 20 kB 18.8 MB/s eta 0:00:01[K     |██████████▏                     | 30 kB 19.8 MB/s eta 0:00:01[K     |█████████████▋                  | 40 kB 21.3 MB/s eta 0:00:01[K     |█████████████████               | 51 kB 23.6 MB/s eta 0:00:01[K     |████████████████████▍           | 61 kB 25.1 MB/s eta 0:00:01[K     |███████████████████████▊        | 71 kB 24.5 MB/s eta 0:00:01[K     |███████████████████████████▏    | 81 kB 25.5 MB/s eta 0:00:01[K     |██████████████████████████████▌ | 92 kB 25.7 MB/s eta 0:00:01[K     |████████████████████████████████| 96 kB 7.1 MB/s 
+[?25hRequirement already satisfied: six in /projects/ce3fe429-16e9-4628-b009-0bb7ec5ec0d7/miniconda3/lib/python3.9/site-packages (from gTTS) (1.16.0)
+Requirement already satisfied: urllib3<1.27,>=1.21.1 in /projects/ce3fe429-16e9-4628-b009-0bb7ec5ec0d7/miniconda3/lib/python3.9/site-packages (from requests->gTTS) (1.26.8)
+Requirement already satisfied: charset-normalizer~=2.0.0 in /projects/ce3fe429-16e9-4628-b009-0bb7ec5ec0d7/miniconda3/lib/python3.9/site-packages (from requests->gTTS) (2.0.4)
+Requirement already satisfied: certifi>=2017.4.17 in /projects/ce3fe429-16e9-4628-b009-0bb7ec5ec0d7/miniconda3/lib/python3.9/site-packages (from requests->gTTS) (2021.10.8)
+Requirement already satisfied: idna<4,>=2.5 in /projects/ce3fe429-16e9-4628-b009-0bb7ec5ec0d7/miniconda3/lib/python3.9/site-packages (from requests->gTTS) (3.3)
+Installing collected packages: click, gTTS
+Successfully installed click-8.1.3 gTTS-2.2.4
+(base) ]0;~/SC22-BatchA-FlamingFuelers-AIDetectsPedestrianSigns/app[01;34m~/SC22-BatchA-FlamingFuelers-AIDetectsPedestrianSigns/app[00m$ (base) ]0;~/SC22-BatchA-FlamingFuelers-AIDetectsPedestrianSigns/app[01;34m~/SC22-BatchA-FlamingFuelers-AIDetectsPedestrianSigns/app[00m$ 

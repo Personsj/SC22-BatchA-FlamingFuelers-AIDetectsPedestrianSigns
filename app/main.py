@@ -20,7 +20,7 @@ else:
     app = Flask(__name__, static_url_path=base_url+'static')
 
 UPLOAD_FOLDER = 'static/uploads'
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'wav'])
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'mp3'])
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 32 * 1024 * 1024
@@ -57,47 +57,66 @@ def home():
 
 @app.route(f'{base_url}/uploads/<filename>', methods = ['GET', 'POST'])
 def uploaded_file(filename):
+    if request.method == 'POST':
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+
+        file = request.files['file']
+        # if user does not select file, browser also
+        # submit an empty part without filename
+        if file.filename == '':
+            flash('No selected file')
+            return redirect(request.url)
+
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            return redirect(url_for('uploaded_file',
+                                    filename=filename))
+
     here = os.getcwd()
     image_path = os.path.join(here, app.config['UPLOAD_FOLDER'], filename)
     results = model(image_path, size=416)
-    if len(results.pandas().xyxy) > 0:
-        results.print()
-        save_dir = os.path.join(here, app.config['UPLOAD_FOLDER'])
-        results.save(save_dir=save_dir)
-        def and_syntax(alist):
-            if len(alist) == 1:
-                alist = "".join(alist)
-                return alist
-            elif len(alist) == 2:
-                alist = " and ".join(alist)
-                return alist
-            elif len(alist) > 2:
-                alist[-1] = "and " + alist[-1]
-                alist = ", ".join(alist)
-                return alist
-            else:
-                return
-        confidences = list(results.pandas().xyxy[0]['confidence'])
-        labels_initial = list(results.pandas().xyxy[0]['name'])
-        # confidences: rounding and changing to percent, putting in function
-        format_confidences = []
-        labels = []
+    #if len(results.pandas().xyxy) > 0:
+    results.print()
+    save_dir = os.path.join(here, app.config['UPLOAD_FOLDER'])
+    results.save(save_dir=save_dir)
+    def and_syntax(alist):
+        if len(alist) == 1:
+            alist = "".join(alist)
+            return alist
+        elif len(alist) == 2:
+            alist = " and ".join(alist)
+            return alist
+        elif len(alist) > 2:
+            alist[-1] = "and " + alist[-1]
+            alist = ", ".join(alist)
+            return alist
+        else:
+            return
+    confidences = list(results.pandas().xyxy[0]['confidence'])
+    labels_initial = list(results.pandas().xyxy[0]['name'])
+    # confidences: rounding and changing to percent, putting in function
+    format_confidences = []
+    labels = []
 
-        for i in range(len(confidences)):
-            if confidences[i] > 0.5:
-                format_confidences.append(str(round(confidences[i]*100)) + '%')
-                #finish next line
-                labels.append(labels_initial[i])
+    for i in range(len(confidences)):
+        if confidences[i] > 0.5:
+            format_confidences.append(str(round(confidences[i]*100)) + '%')
+            #finish next line
+            labels.append(labels_initial[i])
 
-        format_confidences = and_syntax(format_confidences)
-        # labels: sorting and capitalizing, putting into function
+    format_confidences = and_syntax(format_confidences)
+    # labels: sorting and capitalizing, putting into function
+    if len(labels) != 0:
         labels = set(labels)
         labels = [emotion.capitalize() for emotion in labels]
         labels = and_syntax(labels)
-        tts = gTTS(labels + 'ahead')
-        tts.save('1.wav')
-        sound_file = '1.wav'
-        Audio(sound_file, autoplay=True)
+        print(labels)
+        tts = gTTS(labels + ' ahead')
+        tts.save('static/audio/'+labels+'.mp3')
 
         return render_template('results.html', confidences=format_confidences, labels=labels,
                                old_filename=filename,
@@ -105,12 +124,11 @@ def uploaded_file(filename):
 
     else:
         found = False
+        labels = "none"
         tts = gTTS('No Pedestrian Signs ahead')
-        tts.save('1.wav')
-        sound_file = '1.wav'
-        Audio(sound_file, autoplay=True)
+        tts.save('static/audio/'+ labels +'.mp3')
 
-        return render_template('results.html', labels='No Emotion', old_filename=filename, filename=filename)
+        return render_template('results.html', labels='No Signs', old_filename=filename, filename=filename)
 
 
 
